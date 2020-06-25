@@ -10,7 +10,6 @@ class Dishdetail extends Component {
             );
         const coments = comments.map(comment => {
             return(
-                <ul className="list-unstyled">
                     <li key={comment.id}>
                         <p>{comment.comment}</p>
                         <p>{comment.author},
@@ -22,7 +21,6 @@ class Dishdetail extends Component {
                         }).format(new Date(comment.date))}
                         </p>
                     </li>
-                </ul>
             );
         })
         return(
@@ -38,13 +36,15 @@ class Dishdetail extends Component {
     renderDish(dish){
         if(dish!=null)
             return(
-                <Card>
-                    <CardImg top src={dish.image} alt={dish.name}/>
-                    <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
+                <div className="col-12 col-md-5 m-1">
+                    <Card>
+                        <CardImg top src={dish.image} alt={dish.name}/>
+                        <CardBody>
+                            <CardTitle>{dish.name}</CardTitle>
+                            <CardText>{dish.description}</CardText>
+                        </CardBody>
+                    </Card>
+                </div>
             );
         else
             return(
