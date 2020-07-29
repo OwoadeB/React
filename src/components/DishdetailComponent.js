@@ -5,7 +5,7 @@ import {Control , LocalForm , Errors} from 'react-redux-form'
 
 
 
-    function RenderComments({comments}) {
+    function RenderComments({comments, addComment , dishId}) {
         if(comments == null)
             return(
                 <div></div>
@@ -62,7 +62,8 @@ import {Control , LocalForm , Errors} from 'react-redux-form'
             )
         }
         const dishItem = <RenderDish dish={props.dish} />;
-        const commentItem = <RenderComments comments={props.comments} /> ;
+        const commentItem = <RenderComments comments={props.comments} 
+        addComment={props.addComment} dishId={props.dish.id}/> ;
         return(
             <div className="container">
             <div className="row">
@@ -84,7 +85,8 @@ import {Control , LocalForm , Errors} from 'react-redux-form'
                 </div>
                 <div className="col-12 col-md-5 m-1">
                     <CommentForm
-                    dishId={props.dish.id} 
+                    dishId={props.dish.id}
+                    addComment={props.addComment} 
                     postComment={props.postComment}/>
                 </div>
             </div>
@@ -113,8 +115,7 @@ import {Control , LocalForm , Errors} from 'react-redux-form'
 
         handleSubmit(values){
             console.log("Current state is: " + JSON.stringify(values));
-            alert("Current State is: " + JSON.stringify(values));
-            this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
+            this.props.addComment=(this.props.dishId , values.rating , values.author , values.comment)
         }
 
         render(){
